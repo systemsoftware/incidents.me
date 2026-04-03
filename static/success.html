@@ -1,0 +1,24 @@
+<head>
+<title>Activating Your Subscription</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body style="background-color: gray;">
+<div style="  margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%); font-family:Arial, Helvetica, sans-serif; text-align: center;">
+<h1 id="top">Activating Subscription....</h1>
+<h4 id="status"></h4>
+<a href="/dash" style="background-color: rgb(0,230,0);" class="bttn">OK</a><br>
+<a href="mailto:reportaproblem@coolstone.dev" target="_blank" style="background-color: rgb(240,230,0);" class="bttn">Report Problem</a>
+</div>
+</body>
+<script>
+const url = '/handle/' + new URLSearchParams(window.location.search).get("session_id")
+fetch(url, { method:"POST", headers:{ user:localStorage.getItem("uname") } }).then(e => e.json().then(data => {
+if(data.error) {document.getElementById('top').innerHTML = 'Activation Failed'}  else { document.getElementById('top').innerHTML = 'Activation Successful' }
+document.getElementById('status').innerHTML = data.message ? data.message : data.error
+}))
+</script>

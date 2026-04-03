@@ -1,0 +1,188 @@
+<head>
+    <title>Incidents.me</title>
+    <link rel="shortcut icon" href="./logo.png" type="image/png" />
+   </head>
+    <link rel="stylesheet" href="./style.css"> 
+    <button class="tablink2" style="width: 100%">Incidents.me</button><br><br>
+    <button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">About</button>
+    <button class="tablink" onclick="openPage('Pricing', this, 'green')" >Pricing</button>
+    <button class="tablink" onclick="location=`https://docs.api.${location.host}`">Documentation</button>
+    <button class="tablink" id="login" onclick="openPage('Login', this, 'orange')">Log in</button>
+    <div id="Home" class="tabcontent2">
+      <img style="width: 7%;" src="./logo.png">
+      <h2>Incident Alerter</h2>
+      Incidents.me is a freemium service that allows you to create a page to alert your users when your service goes down. You can also automate new incidents in real-time with our free API<br><br>
+      <img src="./imgs/incidentexamples.png" style="width: 50%;">
+      <img src="./imgs/incidentexample2.png" style="width: 40%;">
+      <h2>Schedule downtime</h2>
+      Alert your users of upcoming downtime. <br><br>
+      <img src="./imgs/downtimeexample.png" style="width: 40%;">
+      <h2>Leave your contact info</h2>
+      Want to allow people to contact you? Leave your contact info for people to see!<br><br>
+      <img src="./imgs/contactexample.png" style="width: 50%; border-radius: 10px;">
+      <h2>Customizable</h2>
+      Customizable homepage, and about sections plus more if you upgrade!<br><br>
+      <img src="./imgs/customizableexample.png" style="width: 50%; border-radius: 10px;">
+      <h2>API</h2>
+      Use our API to get/create incidents. Need to get info? You can also get public inform in JSON & RSS, and GET requests don't require a key!<br><br>
+      <img src="./imgs/jsonexample.png" style="width: 50%; border-radius: 10px;">
+      <br><br><br>
+<hr style="width: 60%;">
+      Start for free or upgrade for up to 93%* less than Atlassian Statuspage<br><br>
+      <button onclick="l()" id="__signup" class="bttn" style="background-color: rgb(0,230,0); margin-bottom: 10px;">Sign Up</button>
+      <button onclick="demo()" id="__demo" class="bttn" style="background-color: rgb(79, 79, 79);">View Demo</button>
+      <Br><br><br>
+        <footer style="font-size: xx-small;"><a href="https://coolstone.dev">Developed by CoolStone Technologies</a> <br><br>* Statuspage Enterprise is $1500 / mo vs $100 / mo for Incidents.me</footer><br>
+
+    </div>
+
+    <div id="signup" class="modal">
+        <form style="  margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); background-color: gray;" method="post" class="modal-content" action="/signup">
+          <div class="container">
+            <div class="clearfix">
+              <h3>Sign Up</h3>
+              <input name="name" style="width:80%" placeholder="username"><br><br>
+              <input name="pass" type="password" style="width:80%" placeholder="password"><br><br>
+              <button type="submit" class="newinbttn bttn">Create Account</button>
+              <button type="button" onclick="document.getElementById('signup').style.display='none'" class="cancelinbttn bttn">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    
+    <div id="Pricing" class="tabcontent2">
+      <h3>Pricing</h3>
+      <table>
+        <tr>
+          <th>PERK</th>
+          <th>FREE</th>
+          <th>PRO</th>
+          <th>PREMIUM</th>
+          <th>ENTERPRISE</th>
+        </tr>
+        <tr>
+          <td>Incident History</td>
+          <td>7 days</td>
+          <td>14 days</td>
+          <td>30 days</td>
+          <td>Forever</td>
+        </tr>
+        <tr>
+       <td>Domain</td>
+       <td>Subdomain</td>
+       <td>Custom</td>
+       <td>Custom</td>
+       <td>Custom</td>
+        </tr>
+        <td>Homepage HTML</td>
+        <td colspan="4">Yes</td>
+         </tr>
+         <td>API Key</td>
+         <td colspan="4">Yes</td>
+          </tr>
+        </tr>
+        <td>Custom CSS</td>
+        <td>No</td>
+        <td colspan="3">Yes</td>
+         </tr>
+        </tr>
+        <td>Custom JS</td>
+        <td colspan="2">No</td>
+        <td colspan="2">Yes</td>
+         </tr>
+         <td>Page Badge</td>
+         <td>None</td>
+         <td> <label style="display: none; font-size: xx-small; display:inline-block; vertical-align:middle; border-radius: 10px; border: 2px solid; padding-left: 7px; padding-right: 7px; border-color: blue; color: blue;" id="badge">PRO</label></td>
+         <td> <label style="display: none; font-size: xx-small; display:inline-block; vertical-align:middle; border-radius: 10px; border: 2px solid; padding-left: 7px; padding-right: 7px; border-color: gold; color: gold;" id="badge">PREMIUM</label></td>
+         <td> <label style="display: none; font-size: xx-small; display:inline-block; vertical-align:middle; border-radius: 10px; border: 2px solid; padding-left: 7px; padding-right: 7px; border-color: purple; color: purple;" id="badge">ENTERPRISE</label></td>
+          </tr>
+          <tr>
+            <td>Page watermark</td>
+            <td colspan="3">Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>Free</td>
+            <td>$15 / month</td>
+            <td>$20 / month</td>
+            <td>$100 / month</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="grey"><a style="background-color: rgb(0,230,0); width: 75%;" onclick="if(!localStorage.getItem('user')){ document.getElementById('signup').style.display='block' } else { location = '/dash' }" class="bttn">Sign Up</a></td>
+            <td class="grey"><a style="background-color: rgb(0,230,0); width: 75%;" onclick="if(!localStorage.getItem('user')){ document.getElementById('signup').style.display='block' } else { location = '/dash#pro' }" class="bttn">Get Started</a></td>
+            <td class="grey"><a style="background-color: rgb(0,230,0); width: 75%;" onclick="if(!localStorage.getItem('user')){ document.getElementById('signup').style.display='block' } else { location = '/dash#premium' }" class="bttn">Get Started</a></td>
+            <td class="grey"><a style="background-color: rgb(0,230,0); width: 75%;" onclick="if(!localStorage.getItem('user')){ document.getElementById('signup').style.display='block' } else { location = '/dash#enterprise' }" class="bttn">Get Started</a></td>
+          </tr>
+      </table><br>
+    </div>
+    
+    
+    </div>
+
+    
+    <div id="Login" style="text-align: center !important;" class="tabcontent2">
+      <h3>Log in</h3>
+      <form method="POST" action="/login">
+      <input name="user" class="txt" autocomplete="username" placeholder="username"> <br>
+      <input name="pass" class="txt" type="password" autocomplete="current-password" placeholder="password"> <br>
+      <button type="submit" style="background-color: rgb(0,240,0);" class="submit">Sign In</button> 
+      <button type="button" onclick="location='/discord/connect'" style="background-color: #5865F2; margin-top: 15px;" class="submit">Sign In With Discord</button> 
+      <br><br>
+      <label style="font: xx-small;">Don't have an account? <a onclick="document.getElementById('signup').style.display='block'">Sign up</a></label>
+      </form>
+    </div>
+    
+    <script>
+    const openPage = (pageName, elmnt, color) => {
+      let i
+      let tabcontent
+      let tablinks
+      tabcontent = document.getElementsByClassName("tabcontent2")
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none"
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = ""
+      }
+      document.getElementById(pageName).style.display = "block"
+      sessionStorage.setItem('defaultOpen', pageName)
+    }
+    if(new URLSearchParams(location.search).has("failed")){
+      document.getElementById("login").click()
+      setTimeout(() => {
+        alert("Login failed.")
+      }, 100)
+    }else{
+      document.getElementById("defaultOpen").click()
+    }
+
+    if(location.hash == '#signup' && !localStorage.getItem("user")){
+     document.getElementById('signup').style.display='block'
+    }else     if(location.hash == '#pricing'){
+      openPage("Pricing", document.getElementById("Pricing"), "gray")
+    }
+
+    if(localStorage.getItem("user")){
+      const bttn = document.getElementById("login")
+    bttn.innerHTML = 'Dashboard'
+      bttn.onclick = () => { location = '/dash' }
+    }
+
+    if(localStorage.getItem('user')) document.getElementById('__signup').innerHTML = 'Open Dashboard'
+    const l = () => {
+    if(localStorage.getItem('user')) location = '/dash'
+    else document.getElementById('signup').style.display='block'
+    }
+
+    const demo = () => {
+      open(`http://demo.${location.hostname}`)
+    }
+    </script>

@@ -1,0 +1,362 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+    background-color: gray;
+    overflow: scroll;
+  }
+  
+  .tablink, .tablink2 {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    width: 25%;
+  }
+  
+  
+  .tablink2{
+  cursor:default;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  .tabcontent2 {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+  }
+
+
+*{
+  color: white;
+  font-family: Arial;
+  outline: none;
+  user-select: none;
+  }
+  
+  div {
+  overflow: scroll !important;
+  }
+  
+  a{ text-decoration: none; }
+  
+  body{
+  background-color: rgb(50, 50, 50);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  
+   #title-bar {
+    -webkit-app-region: drag;
+    height: 24px; 
+    background-color: darkviolet;
+    padding: none;
+    margin: 0px; 
+   }
+  
+  
+
+  
+  input, select, textarea{
+    background-color: rgb(166, 166, 166);
+    padding: 10px;
+    border-radius: 10px;
+    width: 20%;
+    border:1px solid rgb(4, 17, 7);
+    cursor: pointer;
+    margin: 8px;
+  }
+  
+    .main {
+      margin-left: 160px; 
+      font-size: 28px;
+      padding: 0px 10px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+  
+    .nohover{
+      font-size: small !important;
+    }
+  
+    .nohover:hover{
+      color: #818181 !important;
+    }
+  
+  .sidepanel {
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    z-index: 1000000000000005;
+    background-color: rgb(0, 0, 0);
+    overflow-x: hidden; 
+    transition: 0.5s;
+    padding-top: 0px !important;
+  }
+  
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+  }
+  
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .sidepanel button {
+  width: 10%;
+  margin: 0;
+  text-align: center !important;
+  }
+  
+
+  .tab button{
+    border-radius: 10px;
+    color: white !important;
+  }
+
+
+  h4{
+  text-align: center;
+  }
+  body{overflow: hidden;}
+  
+  * {box-sizing: border-box}
+  
+  .tab {
+    float: left;
+    width: 20%;
+    text-align: center !important;
+    height: 100%;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 15px 10px;
+    width: 95%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .tab button:hover {
+    background-color: rgb(157, 157, 157);
+  }
+  
+  
+  .tabcontent {
+    float: left;
+    padding: 0px 12px;
+    width: 80%;
+    border: none;
+    display: none;
+    height: 100%;
+    text-align: center;
+    overflow: scroll !important;
+  }
+  
+  #User{
+  display: block;
+  }
+  
+  
+  #Home {background-color: gray;}
+  #Incidents {background-color: gray;}
+  #Contact {background-color: gray;}
+  #About {background-color: gray;}
+  
+  h3{ text-align: center; }
+  
+  .incident{
+  text-align: center;
+  }
+  
+  .txt, .submit, .bttn {
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    display: block;
+    margin: 2px auto;
+    outline: none;
+    width: 30%;
+  }
+
+  .bttn2{
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    margin: auto;
+    margin-left: 10px;
+    outline: none;
+    width: 30%;
+  }
+  *{
+  text-align: center;
+  outline: none;
+  }
+
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+.cancelbtn, .newinbttn, .cancelinbttn {
+  float: left;
+  width: 50%;
+  background-color: rgb(0, 198, 0);
+  text-align: center !important;
+  color: black !important;
+}
+
+.newinbttn{
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+
+.cancelinbttn{
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+background-color: red !important;
+}
+
+.container {
+  padding: 16px;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto;
+  background-color: #00000061;
+  padding-top: 50px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 40%;
+  border-radius: 10px; 
+}
+
+.modal-content button{
+  border-radius: 10px;
+
+}
+
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 300px) {
+  .cancelbtn, .newinbttn {
+    width: 100%;
+  }
+}
+
+
+.incident{
+background-color: rgb(104, 104, 104);
+width: 45%;
+margin: 10px auto;
+padding: 5px;
+border-radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.columns {
+  float: left;
+  width: 33.3%;
+  padding: 8px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 100%;
+  }
+}
+
+hr{
+border: .5px solid white;
+width: 80%;
+}
+
+
+table, tr, th, td{
+  border-collapse: collapse;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+table{
+width: 100%;
+}

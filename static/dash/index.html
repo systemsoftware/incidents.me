@@ -1,0 +1,424 @@
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/png" />
+    <script>
+
+    </script>
+    </head>
+    <button class="tablink2" style="width: 100%">Dashboard</button><br><br>
+    <button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">Home</button>
+    <button class="tablink" onclick="openPage('Incidents', this, 'green')" >Incidents</button>
+    <button class="tablink" onclick="openPage('Settings', this, 'blue')">Settings</button>
+    <button class="tablink" id="login"  onclick="openpage()" >View Page</button>
+    
+    <div id="Home" class="tabcontent2">
+      <p id="homepagecontent">Waiting for you to make this place a home...</p>
+    </div>
+
+
+<div id="newin" class="modal">
+<!---  <span onclick="document.getElementById('newin').style.display='none'" class="close" title="Cancel Incident">&times;</span> -->
+  <form style="  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); background-color: gray;" method="post" class="modal-content" action="/new/incident">
+    <div class="container">
+      <div class="clearfix">
+        <h3>New Incident</h3>
+        <input name="name" style="width:80%" placeholder="Incident name"><br><br>
+        <input type="time" id="intime" name="time" style="width: 39%;"> <input name="date" id="indate" type="date" style="width:39%"><br><br>
+        <select name="type" style="width:80%" id="types" placeholder="Incident type"></select><br><br>
+       <div id="statusdiv"> <select name="status" style="width:80%" id="status" placeholder="Incident status">
+        <option>Evaluating</option>
+        <option>Found</option>
+        <option>Resolved</option>
+        <option>Custom</option>
+        <optgroup id="customstatus" label="Custom Status"></optgroup>
+        </select><br><br>
+       </div>
+
+        <textarea name="desc" style="resize: none; height:150px; width:80%; font-family: Arial, Helvetica, sans-serif;" placeholder="What is the incident?"></textarea><br><br>
+        <input id="incident_key_input" name="key" style="display: none;"><input id="incident_uname_input" name="uname" style="display: none;">
+        <button type="submit" class="newinbttn bttn">Create</button>
+        <button type="button" onclick="document.getElementById('newin').style.display='none'" class="cancelinbttn bttn">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="edit" class="modal">
+  <!---  <span onclick="document.getElementById('newin').style.display='none'" class="close" title="Cancel Incident">&times;</span> -->
+    <form style="  margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); background-color: gray;" method="post" class="modal-content" action="/edit/incident">
+      <div class="container">
+        <div class="clearfix">
+          <h3>Edit Incident</h3>
+          <input name="name" style="width:80%" id="editname" placeholder="Incident name"><br><br>
+          <select name="type" style="width:80%" id="edittypes" placeholder="Incident type"></select><br><br>
+          <input name="date" style="display: none;" id="editdate">
+          <input type="checkbox" name="ongoing" style="width: 5%;" id="OngoingCheck"> <label for="OngoingCheck">Ongoing</label><br><br>
+         <div id="editstatusdiv"> <select name="status" style="width:80%" id="editstatus" placeholder="Incident status">
+          <option>Evaluating</option>
+          <option>Found</option>
+          <option>Resolved</option>
+          <option>Custom</option>
+          <optgroup id="customstatus" label="Custom Status"></optgroup>
+          </select><br><br>
+         </div>
+  
+          <textarea name="desc" id="editabout" style="resize: none; height:150px; width:80%; font-family: Arial, Helvetica, sans-serif;" placeholder="What is the incident?"></textarea><br><br>
+          <input id="edit_incident_key_input" name="key" style="display: none;"><input id="edit_incident_uname_input" name="uname" style="display: none;">
+          <button type="submit" class="newinbttn bttn">Edit</button>
+          <button type="button" onclick="location='/dash'" class="cancelinbttn bttn">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+    
+    <div id="Incidents" class="tabcontent2">
+      <h3>Incidents</h3>
+      <button style="background-color: rgb(104, 104, 104); color:white; width:45%" onclick="document.getElementById('newin').style.display='block'" class="bttn">New Incident</button>
+      <br><hr style="border: 1px solid rgb(104, 104, 104);">
+
+      <h4>Scheduled Downtime</h4>
+      <div id="downtime"></div>
+      <hr style="border: 1px solid rgb(104, 104, 104);">
+      <h4>Ongoing Incidents</h4>
+        <div id="ongoing_incidents"></div>
+
+        <hr style="border: 1px solid rgb(104, 104, 104);">
+      <details id="past_incidents">
+        <summary>Past Incidents</summary>
+
+      </details><br>
+    </div>
+    
+    <div id="Settings" class="tabcontent2">
+      <div style="width: 14%;" class="tab">
+            <button class="tablinks" id="user" onclick="openSetting(event, 'User')">User</button>
+            <button class="tablinks" id="page" onclick="openSetting(event, 'Page')">Page</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'ContactInfo')">Contact Info</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'Homepage')">Homepage</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'Pro')">Subscription</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'api')">API</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'Domain')">Domain</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'Discord')">Discord</button>
+            <hr>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'SignOut')">Sign Out</button>
+            <button class="tablinks" id="contactinfo" onclick="openSetting(event, 'Help')">Get Support</button>
+          </div>
+          
+    <div class="tabcontent" id="Domain">
+    <h3>Custom Domain</h3>
+    <p>Be sure to add a CNAME record with a value of <code style="font-family:monospace;">incidents.me</code></p>
+    <input id="domain" placeholder="status.example.com">
+    <button onclick="fetch(`/account/${localStorage.getItem('uname')}/domain`,  { method:'PATCH', headers:{ value:document.getElementById('domain').value } } ).then(e => e.status != 200 ? alert(e.status == 401 ? 'You must be a pro, premium, or enterprise user to set a custom domain' : e.status) : alert('Set domain!'))" style="background-color: rgb(0,230,0); width:20%" class="bttn">Save</button>
+    </div>
+
+    <div class="tabcontent" id="Help">
+    <h3>Get Support</h3>
+    <p>Need help? Email us at <a href="mailto:support@coolstone.dev">support@coolstone.dev</a> or join our <a style="text-decoration: underline;" href="/discord">Discord</a>. We'll get back to you as soon as possible.</p>
+      </div>
+
+      <div class="tabcontent" id="Discord">
+        <h3>Discord</h3>
+        <h4>Webhook</h4>
+        <p>Connect your Discord server to your status page. This will allow you to send updates to your Discord server when you update your status page.</p>
+        <input id="hook" placeholder="Discord Webhook URL">
+        <button onclick="fetch(`/account/${localStorage.getItem('uname')}/hook`,  { method:'PATCH', headers:{ value:document.getElementById('hook').value } } ).then(e => e.status != 200 ? alert(e.statusText) : alert('Set Webhook'))" style="background-color: rgb(0,230,0); width:20%" class="bttn">Save</button>
+        <h4>Bot</h4>
+        <p>Use our Discord bot to get incidents directly in Discord. You can also just add commands, which will not add a bot user to your guild but some features may not work as expected.</p>
+        <button class="bttn" style="background-color: rgb(0,230,0); display: inline !important; width:20%;margin-top: 10px; margin-left: 20px;" onclick="location='/bot'">Add Bot</button> <button class="bttn" style="background-color: rgb(0,230,0); display: inline !important;  width:20%;margin-top: 10px;" onclick="location='/bot?nouser'">Add Commands</button>
+        <h4>Account</h4>
+        <label id="discordAcc">Connect your Discord account for faster login </label>
+        <button class="bttn" id="discordbttn" style="background-color: rgb(0,230,0); width:20%;margin-top: 10px;" onclick="location='/discord/connect'">Connect</button>
+      <br></div>
+
+          <div id="User" class="tabcontent">
+            <h3>User Settings</h3>
+            <label>Display Name</label><br> <input style="width: 20%;" id="displayname">
+            <button onclick="fetch(`/account/${localStorage.getItem('uname')}/name`,  { method:'PATCH', headers:{ value:document.getElementById('displayname').value } } ).then(e => e.status != 200 ? alert(`${e.status}: ${e.statusText}`) : alert('Set display name!'))" style="background-color: rgb(0,230,0); width:20%" class="bttn">Save</button>
+            <br><br>
+            <label>What would you like people to know about you and your product?</label>
+            <textarea id="about_content" style="width: 80%; height:40%; border-radius: 10px; resize: none;"></textarea>
+            <button onclick="fetch(`/account/${localStorage.getItem('uname')}/about`,  { method:'PATCH', headers:{ value:document.getElementById('about_content').value } } ).then(e => e.status != 200 ? alert(`${e.status}: ${e.statusText}`) : alert('Set bio!'))" style="background-color: rgb(0,230,0); width:80%" class="bttn">Save description</button>
+            <br>
+          </div>
+          
+          <div id="Page" class="tabcontent">
+            <h3>Page Settings</h3>
+            <div id="customjs">
+            <label>Custom JavaScript URL</label> <br><input style="width: 30%;" id="jsin" type="url">
+            <button onclick="fetch(`/account/${localStorage.getItem('uname')}/js`,  { method:'PATCH', headers:{ value:document.getElementById('jsin').value } } ).then(async e => alert(await e.text()))" style="background-color: rgb(0,230,0); width:30%" class="bttn">Save JS</button>
+            <br><br>
+          </div>
+          <div id="customcss">
+            <label>Custom CSS URL</label> <br><input style="width: 30%;" id="cssin" type="url">
+            <button onclick="fetch(`/account/${localStorage.getItem('uname')}/css`,  { method:'PATCH', headers:{ value:document.getElementById('cssin').value } } ).then(async e => alert(await e.text()))" style="background-color: rgb(0,230,0); width:30%" class="bttn">Save CSS</button>
+            <br><br>
+          </div>
+          </div>
+
+        <div id="ContactInfo" class="tabcontent">
+          <h3>Contact Info</h3>
+          <label>How would you like people to contact you?</label>
+          <textarea id="contact_content" style="width: 80%; height:40%; border-radius: 10px; resize: none;"></textarea>
+          <button onclick="fetch(`/account/${localStorage.getItem('uname')}/contact`,  { method:'PATCH', headers:{ value:document.getElementById('contact_content').value } } ).then(e => e.status != 200 ? alert(`${e.status}: ${e.statusText}`) : alert('Set contact info!'))" style="background-color: rgb(0,230,0); width:80%" class="bttn">Submit</button>
+        </div>
+
+        <div id="Homepage" class="tabcontent">
+          <h3>Homepage Content</h3>
+          <label>Set the landing page's content!</label>
+          <textarea id="home_content" style="width: 80%; height:40%; border-radius: 10px; resize: none;"></textarea>
+          <button onclick="fetch(`/account/${localStorage.getItem('uname')}/home`,  { method:'PATCH', headers:{ value:document.getElementById('home_content').value } } ).then(e => e.status != 200 ? alert(`${e.status}: ${e.statusText}`) : alert('Set homepage content!'))" style="background-color: rgb(0,230,0); width:80%" class="bttn">Submit</button>
+        </div>
+        <div id="api" class="tabcontent">
+          <h3>API</h3>
+          <button onclick="alert(localStorage.getItem('user'))" style="background-color: gray; border-radius:10px; border:none;padding:5px">Reveal key</button> or 
+         <button onclick="fetch('/new/key', { method:'POST', headers:{ pass:prompt('Please confirm with your password'), user:localStorage.getItem('uname'), key:localStorage.getItem('user')} }).then(r => r.json().then(d => d.error ? alert(d.error) : localStorage.setItem('user', d.key)))" style="background-color: red; border-radius:10px; border:none;padding:5px">Regenerate Key</button>
+        </div>
+        <div id="SignOut" class="tabcontent">
+          <h3>Sign Out</h3>
+          Are you sure you want to sign out?<br><br>
+          <button onclick="localStorage.clear(); location.reload()" style="background-color: rgb(240,0,0); width:50%" class="bttn">Sign Out</button>
+          <br><hr style="width: 50%;">
+          <h3>Delete Account</h3>
+          This cannot be undone. Please be sure<br><br>
+          <button onclick="fetch('/account', { method:'DELETE', headers:{ pass:prompt('Please confirm with your password'), user:localStorage.getItem('uname'), key:prompt('Please confirm with your API key')} }).then(r => r.json().then(d => {d.error ? alert(d.error) : localStorage.setItem('user', d.key); if(r.status == 200) localStorage.clear(); location.reload() }))" style="background-color: red; border-radius:10px; width: 50%; border:none;padding:5px">Delete account and page forever</button>
+
+        </div>
+        <div id="Pro" class="tabcontent">
+          <h3 id="subtop"></h3>
+
+          <div style="display: none;" id="pay">
+          <form action='/create-checkout-session' method="POST"> 
+         Upgrade to   <select name="tier" id="sel"><optgroup label="Basic Plans"><option value="pro">PRO</option><option value="premium">PREMIUM</option></optgroup><optgroup label="Enterprise Plans"><option value="enterprise">ENTERPRISE</option></optgroup></select>
+         <button class="bttn" type="submit"style="background-color: rgb(0,230,0);">Pay on Stripe.com</button><br>
+         <button class="bttn" type="button" onclick="location='/#pricing'" style="background-color: rgb(107, 107, 107);">Compare plans</button><br>
+        </div>
+        <div style="display: none;" id="sub">
+          <button class="bttn" type="button"  onclick="cancelSub()"  style="background-color: rgb(240,240,0);">Cancel subscription</button><br>
+        <button class="bttn" type="button"  onclick="location='/refund'"  style="background-color: rgb(240,0,0);">Request refund</button>
+        </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    <script>
+
+let types = {}
+
+          if(!localStorage.getItem("user")) location = '/'
+
+
+    const openPage = (pageName, elmnt, color) => {
+      let i
+      let tabcontent
+      let tablinks
+      tabcontent = document.getElementsByClassName("tabcontent2")
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none"
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = ""
+      }
+      document.getElementById(pageName).style.display = "block"
+      sessionStorage.setItem('defaultOpen', pageName)
+    }
+    document.getElementById("defaultOpen").click();
+
+    const openpage = () => {
+        open(`http://${localStorage.getItem('uname')}.${location.host}`, '_blank');
+    }
+
+    if(new URLSearchParams(location.search).get('page')) openPage(new URLSearchParams(location.search).get('page'), null, null)
+    if(new URLSearchParams(location.search).get('incident_500')) {alert(`An error occured. Please try again later. \n\n Error: ${new URLSearchParams(location.search).get('incident_500')}`); location = '/dash'}
+
+
+    if(location.hash == '#pro' || location.hash == '#premium' || location.hash == '#enterprise') {
+      openSetting(null, 'Pro')
+      document.getElementById('sel').value = location.hash.slice(1)
+      openPage('Settings', null, 'rgb(0,230,0)')
+    }
+
+    const modal = document.getElementById('newin');
+    const editModal = document.getElementById('edit');
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }else  if (event.target == editModal) {
+        editModal.style.display = "none";
+    }
+}
+
+deleteIncident = (id) => {
+if(confirm("Are you sure?")){
+fetch(`/${localStorage.getItem("uname")}/${encodeURIComponent(id)}`, { method:'DELETE', headers:{ key:localStorage.getItem("user") } }).then(e => {
+e.json().then(m => {
+alert(m.message || m.error)
+location.reload()
+})
+})
+}
+}
+
+const cancelSub = () => {
+  fetch('/subscription', { method:'DELETE', headers:{ pass:prompt('Please confirm with your password'), user:localStorage.getItem('uname') }}).then(r => r.json().then(d => {alert(d.message ? d.message : d.error); location.reload() }))
+}
+
+fetch(`/${localStorage.getItem("uname")}/incidents/json`).then(i => i.json().then(incidents => {
+if(incidents.error) { 
+document.getElementById("past_incidents").innerHTML = '<br>No incidents' 
+document.getElementById("ongoing_incidents").innerHTML = '<br>No incidents' 
+}else{
+for(const incident in incidents){
+const e = incidents[incident]
+const html =  `<div class="incident"><h4>${e.name} (${new Date(incident).toLocaleString()})</h4><p>${e.about} ${`<br><br><button class="bttn2" onclick="location='?edit=${incident}'" style="background-color:rgb(0,230,0);">Edit</button><button class="bttn2" onclick="deleteIncident('${incident}')" style="background-color:rgb(240,0,0)">Delete</button>`}</div>`
+const id = e.type == 2 && incident.ongoing == true ? "downtime" : (e.ongoing ? "ongoing_incidents" : "past_incidents")
+console.log(id)
+  document.getElementById(id).innerHTML += html
+}
+}
+}))
+
+const s = document.getElementById('status')
+s.onchange = ev => {
+if(s.value == 'Custom'){
+const p = prompt("Enter custom status")
+if(p) document.getElementById('customstatus').innerHTML += `<option value="${p}">${p}</option>`
+s.value = p
+}
+}
+const s2 = document.getElementById('editstatus')
+s2.onchange = ev => {
+if(s2.value == 'Custom'){
+const p = prompt("Enter custom status")
+if(p) document.getElementById('customstatus').innerHTML += `<option value="${p}">${p}</option>`
+s2.value = p
+}
+}
+
+function openSetting(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+ if(evt) evt.currentTarget.className += " active";
+}
+
+if(new URLSearchParams(location.search).has('canceledupgrade')) {alert('Canceled upgrade'); location = '/dash'}
+
+fetch(`/account/${localStorage.getItem("uname")}`).then(e => e.json().then(account => {
+if(account.name) document.getElementById("displayname").value = account.name
+if(account.contact) document.getElementById("contact_content").value = account.contact
+if(account.about) document.getElementById("about_content").value = account.about
+if(account.home) document.getElementById("home_content").value = account.home
+if(account.home) document.getElementById("homepagecontent").innerHTML = account.home
+if(account.js) document.getElementById("jsin").value = account.js
+if(account.css) document.getElementById("cssin").value = account.css
+if(account.domain) document.getElementById("domain").value = account.domain
+if(account.hook) document.getElementById("hook").value = account.hook
+if(account.discord) {
+document.getElementById("discordAcc").style.display = 'block'
+fetch(`/discord/user/${account.discord}`).then(e => e.json().then(discord => {
+if(discord.username) document.getElementById("discordAcc").innerHTML = `Connected to ${discord.tag}`
+}))
+const discordbttn = document.getElementById("discordbttn")
+discordbttn.innerHTML = `Disconnect`
+discordbttn.onclick = () => {
+fetch(`/account/${localStorage.getItem("uname")}/discord`, { method:'PATCH', headers:{value:""}} ).then( async e => {
+alert(await e.text())
+})
+}
+discordbttn.style.backgroundColor = 'red'
+}
+document.getElementById('subtop').innerHTML = `Manage Your ${account.tier.substring(0,1)}${ account.tier.substring(1,account.tier.length).toLowerCase()} Plan`
+if(account.tier.toLowerCase() != 'free') {document.getElementById("sub").style.display = 'block'}else{document.getElementById("pay").style.display = 'block'}
+}))
+
+    document.getElementById("incident_key_input").value = localStorage.getItem("user")
+    document.getElementById("incident_uname_input").value = localStorage.getItem("uname")
+    document.getElementById("edit_incident_key_input").value = localStorage.getItem("user")
+    document.getElementById("edit_incident_uname_input").value = localStorage.getItem("uname")
+
+    fetch('/types').then(e => e.json().then(d => {
+      types = d
+      for(const type in d){
+        document.getElementById("types").innerHTML += `<option value="${d[type]}">${type.split("_").join(" ")}</option>`
+        document.getElementById("edittypes").innerHTML += `<option value="${d[type]}">${type.split("_").join(" ")}</option>`
+      }
+    }))
+
+    document.getElementById('types').onchange = () => {
+    if(document.getElementById('types').value == 2){
+      document.getElementById('statusdiv').style.display = 'none'
+    }else{
+      document.getElementById('statusdiv').style.display = 'block'
+    }
+    }
+
+
+    document.getElementById('edittypes').onchange = () => {
+    if(document.getElementById('edittypes').value == 2){
+      document.getElementById('editstatusdiv').style.display = 'none'
+    }else{
+      document.getElementById('editstatusdiv').style.display = 'block'
+    }
+    }
+
+    if(new URLSearchParams(location.search).has("edit")){
+    document.getElementById("edit").style.display = 'block'
+    fetch(`/${localStorage.getItem("uname")}/incidents/json`).then(i => i.json().then(incidents => {
+    const incident = incidents[new URLSearchParams(location.search).get("edit")]
+    document.getElementById("editdate").value = new URLSearchParams(location.search).get("edit")
+    if(!incident) location = '/dash'
+    document.getElementById("editname").value = incident.name
+    document.getElementById("editabout").value = incident.about
+    document.getElementById("edittypes").value = incident.type
+    document.getElementById("OngoingCheck").checked = incident.ongoing
+    if(incident.type == 2){
+      document.getElementById('editstatusdiv').style.display = 'none' 
+    }else{
+      document.getElementById('editstatusdiv').style.display = 'block'
+    }
+  }))
+    }
+
+    // set date input to today
+    const today = new Date()
+    const dd = String(today.getDate()).padStart(2, '0')
+    const mm = String(today.getMonth() + 1).padStart(2, '0')
+    const yyyy = today.getFullYear()
+    const todaydate = yyyy + '-' + mm + '-' + dd
+    document.getElementById("indate").value = todaydate
+
+    //set time input to now
+    const now = new Date()
+    const hh = String(now.getHours()).padStart(2, '0')
+    const min = String(now.getMinutes()).padStart(2, '0')
+    const nowtime = hh + ':' + min
+    document.getElementById("intime").value = nowtime
+
+
+
+    </script>

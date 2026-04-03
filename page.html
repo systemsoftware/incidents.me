@@ -1,0 +1,289 @@
+<head>
+<title>%User%'s Status</title>
+<!--CUSTOM_JS-->
+<!--CUSTOM_CSS-->
+</head>
+
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+    background-color: gray;
+    overflow: scroll;
+  }
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+  
+  *{ text-align: center; }
+
+  .tablink, .tablink2 {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+  
+  
+  .tablink2{
+  cursor:default;
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  .tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+  }
+  
+  #Home {background-color: gray;}
+  #Incidents {background-color: gray;}
+  #Contact {background-color: gray;}
+  #About {background-color: gray;}
+  
+  h3{ text-align: center; }
+  
+  .incident{
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  }
+  
+  .txt, .submit {
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    display: block;
+    margin: 2px auto;
+    outline: none;
+    width: 30%;
+  }
+
+  .incidentDiv {
+  background-color: rgb(103, 103, 103); border-radius:10px; padding:5px; width:80%; margin: 10px auto;
+  }
+
+a{ color: white; }
+* { outline: none; } 
+select{
+background: none;
+border: none;
+color: white;
+width: fit-content;
+padding: 10px;
+}
+
+
+.tab button{
+    border-radius: 10px;
+    color: white !important;
+  }
+
+
+  h4{
+  text-align: center;
+  }
+  body{overflow: hidden;}
+  
+  .tab {
+    float: left;
+    width: 20%;
+    text-align: center !important;
+    height: 100%;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 15px 10px;
+    width: 95%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .tab button:hover {
+    background-color: rgb(157, 157, 157);
+  }
+  
+  
+  .tabcontent2 {
+    float: left;
+    padding: 0px 12px;
+    width: 80%;
+    border: none;
+    display: none;
+    height: 100%;
+    text-align: center;
+    overflow: scroll !important;
+  }
+</style>
+
+<button class="tablink2" style="width: 100%;">%User% <label style="display: none; font-size: xx-small; display:inline-block; vertical-align:middle; border-radius: 10px; border: 2px solid; padding-left: 7px; padding-right: 7px;" id="badge">TIER</label>
+</button>
+<br><br>
+<button  class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">Home</button>
+<button class="tablink" onclick="openPage('Incidents', this, 'green')" >Incidents</button>
+<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+
+
+<div id="Home" class="tabcontent">
+  <p id="homepagecontent">Waiting for %User% to make this place a home...</p>
+</div>
+
+<div id="Incidents" class="tabcontent">
+  <h3>Incidents</h3>
+
+  <div style="width: 14%;" class="tab">
+    <button class="tablinks" id="ongoingbttn" onclick="openSetting(event, 'ongoing_incidents')">Ongoing</button>
+    <button class="tablinks" id="downtimebttn" onclick="openSetting(event, 'downtimeDiv')">Upcoming</button>
+    <button class="tablinks" id="pastbttn" onclick="openSetting(event, 'past_incidents')">Past</button>
+  </div>
+  <div class="tabcontent2" id="downtimeDiv">
+    <h4>Upcoming downtime</h4>
+  </div>
+  <div class="tabcontent2" id="ongoing_incidents">
+    <h4>Ongoing incidents</h4>
+  </div>
+
+ <div class="tabcontent2" id="past_incidents">
+  <h4>Past incidents</h4>
+
+  </div>
+</div>
+
+<div id="Contact" class="tabcontent">
+  <h3>Contact %User%</h3>
+  <p id="contact_info">We don't know how to contact %User%</p>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About %User%</h3>
+  <p id="about">We don't know who they are or what they do.</p>
+</div>
+
+<div id="Share" class="tabcontent">
+  <h3>Share Page</h3>
+  RSS: <a id="rss"></a><br><Br>
+  JSON: <a id="json"></a>
+</div>
+
+<div style="
+  position: fixed;
+  bottom: 0;
+  width: 100%; text-align: center; font-size: xx-small; background-color: #555; color: white; padding: 2px;">
+    Display <select id="display" style="font-size: xx-small;"> <option value="date">Incident Date</option> <option value="name">Incident Name</option> <option value="both">Both</option> </select>
+
+
+       <label style="width: 5%; text-align: right; height: 100%; font-size: xx-small; padding-left: 2%;cursor: pointer;" onclick="openPage('Share', this, 'orange')"> Share</label>
+       <label id="poweredby" style="padding-left: 2%;cursor: pointer;" onclick="location='https://incidents.me'"> Powered by incidents.me</label>
+      </div>
+
+<script>
+const openPage = (pageName, elmnt, color) => {
+  let i
+  let tabcontent
+  let tablinks
+  tabcontent = document.getElementsByClassName("tabcontent")
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none"
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = ""
+  }
+  document.getElementById(pageName).style.display = "block"
+  sessionStorage.setItem('defaultOpen', pageName)
+}
+
+const rss = `http://${location.hostname}/rss`
+const json = `http://${location.hostname}/json`
+document.getElementById('rss').innerHTML = rss
+document.getElementById('rss').href = rss
+document.getElementById('json').innerHTML = json
+document.getElementById('json').href = json
+
+const searchParams = new URLSearchParams(location.search)
+
+fetch(`/json`).then(i => i.json().then(account => {
+const incidents = account.incidents
+for(const incident in incidents){
+const e = incidents[incident]
+const bold = searchParams.get('display') == 'name' ? e.name : searchParams.get("display") == 'both' ? `${e.name} (${new Date(incident).toLocaleDateString()})` : new Date(incident).toLocaleDateString()
+document.getElementById("display").value = searchParams.get('display') || "date"
+console.log('e')
+if(account.tier == 'FREE') document.getElementById('badge').style.display = 'none'
+if(account.tier == 'PRO') document.getElementById('badge').style.borderColor = `blue`
+if(account.tier == 'PREMIUM') document.getElementById('badge').style.borderColor = `gold`
+if(account.tier == 'ENTERPRISE') {document.getElementById('badge').style.borderColor = `red`;document.getElementById('poweredby').style.display = `none`}
+if(e.type == 2 && e.ongoing == true) { document.getElementById("downtimeDiv").innerHTML += `<div style="cursor:pointer" onclick="location='/incident/${incident}'"class="incident"><b>${bold} - </b>${e.about}</div>`}else{
+document.getElementById(e.ongoing ? "ongoing_incidents" : "past_incidents").innerHTML += `<div style="cursor:pointer" onclick="location='/incident/${incident}'"class="incident" class="incident"><b>${bold}</b> - <label>${e.about}</label></div>`
+if(account.contact) document.getElementById("contact_info").innerHTML = account.contact
+if(account.about) document.getElementById("about").innerHTML = account.about
+if(account.home) document.getElementById("homepagecontent").innerHTML = account.home
+document.getElementById('badge').innerHTML = account.tier
+document.getElementById('badge').style.color = document.getElementById('badge').style.borderColor
+}
+}
+}))
+
+document.getElementById("display").addEventListener('change', e => {
+location = `?display=${e.target.value}`
+})
+
+function openSetting(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent2");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+ if(evt) evt.currentTarget.className += " active";
+}
+
+document.getElementById('ongoingbttn').click()
+document.getElementById("defaultOpen").click();
+</script>

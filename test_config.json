@@ -1,0 +1,10 @@
+{
+"port":80,
+"url":"http://localhost",
+"stripe_api_key":"",
+"tiers":{ "pro":{ "id":"" }, "premium":{ "id":"" }, "enterprise": { "id":"" } },
+"types":{ "INCIDENT":1, "SCHEDULED_DOWNTIME":2 },
+"maxChars":200,
+"maxCharsTitle":50,
+"maxCharsIncident":200
+}

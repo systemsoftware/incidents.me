@@ -1,0 +1,26 @@
+{
+  "name": "incidents.me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "discord.js": "^14.6.0",
+    "dubnium": "^2.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.6.0",
+    "firebase-admin": "^13.7.0",
+    "moment": "^2.29.4",
+    "stripe": "^10.17.0",
+    "undici": "^8.0.1",
+    "vhost": "^3.0.2"
+  }
+}

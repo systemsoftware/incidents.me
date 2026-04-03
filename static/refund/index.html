@@ -1,0 +1,20 @@
+<head>
+<title>Request a Refund</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<form style="  margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+width:100%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);" method="post" action="https://discord.com/api/webhooks/1044004717610680361/CpaXhrq7nm3NC9AmGlXsmy-io2sE638mgwfkG23s99gtVQR-Sm_T7DfDBBwrtBIeTq5w">
+<h2>Request Refund</h2>
+<input placeholder="Email" style="width:20%;" name="content">
+<input id="user" style="display: none;" name="username">
+<button onclick="alert('Sent!');location='/dash'" style="background-color: rgb(240,0,0); width: 20%;" class="bttn">Confirm</button><br>
+<button onclick="location='/dash'" type="button" style="background-color: rgb(112, 112, 112); width: 20%;" class="bttn">Cancel</button>
+</form>
+<script>
+document.getElementById('user').value = localStorage.getItem('uname')
+</script>

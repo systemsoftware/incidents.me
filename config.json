@@ -1,0 +1,14 @@
+{
+"port":3000,
+"url":"http://localhost",
+"stripe_api_key":"",
+"discord_token":"",
+"discordClientSecret":"",
+"discordClientId":"",
+"tiers":{ "pro":{ "id":"" }, "premium":{ "id":"" }, "enterprise": { "id":"" } },
+"types":{ "INCIDENT":1, "SCHEDULED_DOWNTIME":2 },
+"maxChars":200,
+"maxCharsTitle":50,
+"maxCharsIncident":200,
+"freeDomains":[ "localhost" ]
+}

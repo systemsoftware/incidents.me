@@ -1,0 +1,8 @@
+<a id="e" style="color: black;" href="https://discord.com/oauth2/authorize?client_id=1046213190289215498&scope=bot%20applications.commands&permissions=8&redirect_uri=https://incidents.me/bot/added&response_type=code">Click here to add the bot</a>
+<script>
+const e = document.getElementById('e')
+if(new URLSearchParams(location.search).has("nouser")){
+e.href = e.href.replace('bot%20','')
+}
+location = e.href;
+</script>
